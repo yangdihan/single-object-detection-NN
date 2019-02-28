@@ -14,9 +14,18 @@ import data_loader
 def main():
 	# training params
 	lr = 0.0001
-	batch_size = 4
-	num_epochs = 1
 	root = sys.argv[1]
+
+	# gpu options
+	if torch.cuda.is_available():
+		# stride choose between 1-46
+		num_epochs = 10
+		batch_size = 10
+		device = torch.device("cuda")
+	else: 
+		num_epochs = 1
+		batch_size = 4
+		device = torch.device("cpu")
 
 	# test if gpu should be used
 	device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

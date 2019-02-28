@@ -79,7 +79,7 @@ def main():
 	# torch.save(model.state_dict(), 'trained.pth')
 	# save the whole model
 	torch.save(model, 'trained.pth')
-	print('======= weights saved as trained.pth =======')
+	# print('======= weights saved as trained.pth =======')
 
 if __name__ == '__main__':
 	main()

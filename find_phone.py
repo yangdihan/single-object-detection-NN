@@ -17,7 +17,7 @@ if __name__ == '__main__':
 	# gpu options
 	if torch.cuda.is_available():
 		# stride choose between 1-46
-		stride = 1
+		stride = 5
 		device = torch.device("cuda")
 	else: 
 		stride = 25

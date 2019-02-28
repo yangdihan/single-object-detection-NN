@@ -9,34 +9,33 @@ import util
 
 
 if __name__ == '__main__':
-	# user can change this
-	use_gpu = False
-	has_gpu = torch.cuda.is_available()
-	device = torch.device("cuda" if (has_gpu and use_gpu) else "cpu")
-
 	# var to change
 	# stride when slide window on image
 	# l is the fixed window size. In this problem I make this assumption
 	# because the given training images seem to have fixed size of iphone in view
 	l = 23
-	# stride choose between 1-46
-	if (has_gpu and use_gpu):
-		stride = 1
+	# gpu options
+	if torch.cuda.is_available():
+		# stride choose between 1-46
+		stride = 5
+		device = torch.device("cuda")
 	else: 
 		stride = 25
+		device = torch.device("cpu")
 
 	# load model
-	from simpleCNN import Net 
+	from cnn_simple import Net 
 	# only load param 
 	# model = Net()
 	# model.load_state_dict(torch.load('trained.pth'))
 	# or load the entire model
+	path = sys.argv[1]
 	model = torch.load('trained.pth')
 	model.eval()
 	acc = 0
 
 	# load the image
-	images,labels,names = util.readDataset('./find_phone_task_4/find_phone')
+	images,labels,names = util.read_dataset(path)
 	for k,mat in enumerate(images):
 		# mat = cv2.imread(img)
 		img_wid = mat.shape[1]

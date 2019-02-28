@@ -3,7 +3,7 @@ import math
 import numpy as np
 # from PIL import Image
 
-def readDataset(path):
+def read_dataset(path):
 	images = []
 	labels = []
 	names = []
@@ -18,7 +18,10 @@ def readDataset(path):
 	return images,labels,names
 
 
-def markCenter(images,labels,names,note):
+def mark_center(images,labels,names,note):
+	""" 
+		a tool function I used for myself
+    """
 	l_box = 23
 	if not(len(images)==len(labels)==len(names)):
 		print('need same amount of images and labels')
@@ -41,7 +44,10 @@ def markCenter(images,labels,names,note):
 
 
 
-def cropOut(images,labels):
+def crop_out(images,labels):
+	""" 
+		To get the data from images
+    """
 	l_box = 23
 
 	if (len(images)!=len(labels)):
@@ -87,29 +93,4 @@ def overlap(m,n,x,y,l):
 		return False
 	return True
 
-
-# def slideWindow():
-# 	l = 23
-#     path = './find_phone_task_4/find_phone/51.jpg'
-#     mat = cv2.imread(path)
-#     img_wid = mat.shape[1]
-#     img_hgt = mat.shape[0]
-#     # # crop out the background boxes
-#     row_num_box = math.floor(img_hgt/(2*l))
-#     col_num_box = math.floor(img_wid/(2*l))
-#     scores = []
-#     # change stride
-#     for p in range(row_num_box):
-#         for q in range(col_num_box):
-#     #       # top-left pixel idx of background box
-#             m = int(p/row_num_box*img_hgt)
-#             n = int(q/col_num_box*img_wid)
-#     #       if not overlap(m,n,x,y,l_box):
-#             window = mat[m:m+2*l,n:n+2*l]
-#             window = np.rollaxis(window, 2, 0)
-#             window = Variable(torch.from_numpy(window).type(torch.FloatTensor))
-#             print(window.shape)
-#             output = model(window)
-#             score.append(output)
-#     print(scores)
 

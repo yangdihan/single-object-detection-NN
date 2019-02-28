@@ -8,7 +8,7 @@ import torchvision.transforms as transforms
 from torch.autograd import Variable
 
 import util
-import dataLoader
+import data_loader
 
 def main():
 	# training params
@@ -29,14 +29,14 @@ def main():
 	])
 
 	# train dataset loader
-	train_data_loader = dataLoader.TrainingSetLoader(root, train_transformations)
+	train_data_loader = data_loader.TrainingSetLoader(root, train_transformations)
 	train_loader = torch.utils.data.DataLoader(dataset=train_data_loader,
 													batch_size=batch_size,
 													shuffle=True)
 	# can add test loader here
 
 
-	from simpleCNN import Net 
+	from cnn_simple import Net 
 	model = Net().to(device)
 	# can also use SGD and add momentum
 	optimizer = optim.Adam(model.parameters(), lr=lr)

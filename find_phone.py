@@ -24,7 +24,7 @@ if __name__ == '__main__':
 		stride = 25
 		
 	# load model
-	from simpleCNN import Net 
+	from cnn_simple import Net 
 
 	# only load param 
 	# model = Net()

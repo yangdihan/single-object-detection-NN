@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import cv2
 import sys
 import numpy as np 
@@ -8,9 +9,7 @@ from torch.autograd import Variable
 
 if __name__ == '__main__':
 	# user can change this
-	use_gpu = False
-	has_gpu = torch.cuda.is_available()
-	device = torch.device("cuda" if (has_gpu and use_gpu) else "cpu")
+	device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 	# var to change
 	# stride when slide window on image
@@ -18,7 +17,7 @@ if __name__ == '__main__':
 	# because the given training images seem to have fixed size of iphone in view
 	l = 23
 	# stride choose between 1-46
-	if (has_gpu and use_gpu):
+	if torch.cuda.is_available():
 		stride = 1
 	else: 
 		stride = 25

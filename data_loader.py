@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import numpy as np
 from torch.utils.data.dataset import Dataset
 from random import shuffle

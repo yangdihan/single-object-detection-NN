@@ -7,16 +7,22 @@ from torch.autograd import Variable
 
 
 if __name__ == '__main__':
+	# user can change this
 	use_gpu = False
 	has_gpu = torch.cuda.is_available()
 	device = torch.device("cuda" if (has_gpu and use_gpu) else "cpu")
+
 	# var to change
 	# stride when slide window on image
 	# l is the fixed window size. In this problem I make this assumption
 	# because the given training images seem to have fixed size of iphone in view
 	l = 23
 	# stride choose between 1-46
-	stride = 46 if device=='cpu' else 2
+	if (has_gpu and use_gpu):
+		stride = 1
+	else: 
+		stride = 25
+		
 	# load model
 	from simpleCNN import Net 
 
